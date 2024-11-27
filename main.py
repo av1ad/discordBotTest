@@ -7,7 +7,6 @@
 import os
 import discord
 from discord.ext import commands
-from discord import app_commands
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -36,11 +35,13 @@ bot = Client()
 
 @bot.tree.command(name='hello',description="hai", guild=GUILD_ID)
 async def hello(interaction: discord.Interaction):
-    await interaction.response.send_message(f'Hello ^-^ {interaction.user.name}! 😺')
+    await interaction.response.send_message(f'Hallooooo :3 {interaction.user.name}! 😺')
     
 @bot.tree.command(name="meow", description="meow",guild=GUILD_ID)
-async def meow(interaction: discord.Interaction):
-    await interaction.response.send_message(f"{interaction.user.name} meow")
+async def meow(interaction: discord.Interaction, user: discord.User):
+    await interaction.response.send_message(f"<@{interaction.user.id}> meowed at <@{user.id}> ^-^")
+    print(interaction.user.name)
+    print(interaction.user.id)
 
 
 if __name__ == "__main__":
