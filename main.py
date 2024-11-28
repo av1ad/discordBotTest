@@ -42,10 +42,18 @@ async def meow(interaction: discord.Interaction, user: discord.User):
     await interaction.response.send_message(f"<@{interaction.user.id}> meowed at <@{user.id}> ^-^")
     
     
-@bot.tree.command(name="msg", description=".",guild=GUILD_ID)
-async def msg(interaction: discord.Interaction):
-    embed = discord.Embed(title="test message", description="")
+# @bot.tree.command(name="msg", description=".",guild=GUILD_ID)
+# async def msg(interaction: discord.Interaction):
+#     embed = discord.Embed(title="test message", description="", color=0xff0000)
+#     embed.add_field(name="Your name is:", value=interaction.user.mention, inline=True)
+#     embed.add_field(name="Avatar:", value=embed.set_image(url=interaction.user.display_avatar), inline=True)
+#     await interaction.response.send_message(embed=embed)
+    
+@bot.tree.command(name="avatar", description="gets a user's avatar", guild=GUILD_ID)
+async def avatar(interaction: discord.Interaction, user: discord.User):
+    embed = discord.Embed(description=f"{user.mention}'s avatar", color=0xBA55D3)
+    embed.set_thumbnail(url=user.display_avatar)
     await interaction.response.send_message(embed=embed)
-
+    
 if __name__ == "__main__":
     bot.run(TOKEN)
