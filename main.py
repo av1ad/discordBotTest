@@ -40,9 +40,12 @@ async def hello(interaction: discord.Interaction):
 @bot.tree.command(name="meow", description="meow",guild=GUILD_ID)
 async def meow(interaction: discord.Interaction, user: discord.User):
     await interaction.response.send_message(f"<@{interaction.user.id}> meowed at <@{user.id}> ^-^")
-    print(interaction.user.name)
-    print(interaction.user.id)
-
+    
+    
+@bot.tree.command(name="msg", description=".",guild=GUILD_ID)
+async def msg(interaction: discord.Interaction):
+    embed = discord.Embed(title="test message", description="")
+    await interaction.response.send_message(embed=embed)
 
 if __name__ == "__main__":
     bot.run(TOKEN)
